@@ -25,9 +25,6 @@ class CreateUsersTable extends Migration
                 ->references('id')
                 ->on('providers')
                 ->onDelete('cascade');
-
-
-
         });
     }
 

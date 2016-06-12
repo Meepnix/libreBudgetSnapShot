@@ -24,7 +24,7 @@ class CreateProvidersTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('fax')->nullable();
-
+            $table->string('logo_link')->nullable();
             $table->timestamps();
         });
     }
