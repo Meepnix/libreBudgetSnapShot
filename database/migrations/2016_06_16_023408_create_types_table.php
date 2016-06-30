@@ -24,10 +24,10 @@ class CreateTypesTable extends Migration
                 ->on('providers')
                 ->onDelete('cascade');
 
-                $table->foreign('group_id')
-                    ->references('id')
-                    ->on('groups')
-                    ->onDelete('cascade');
+            $table->foreign('group_id')
+                ->references('id')
+                ->on('groups')
+                ->onDelete('cascade');
         });
     }
 
