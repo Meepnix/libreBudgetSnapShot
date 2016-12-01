@@ -19,4 +19,9 @@ class Provider extends Model
         'fax',
         'logo_link'
     ];
+
+    public function users()
+    {
+        return $this->hasMany('App\User');
+    }
 }

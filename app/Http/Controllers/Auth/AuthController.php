@@ -52,6 +52,8 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'provide_id' => 'required',
+            'type' => 'required',
         ]);
     }
 
@@ -67,6 +69,8 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'provide_id' => $data('provide_id'),
+            'type' => $data('type'),
         ]);
     }
 }
