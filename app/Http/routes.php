@@ -17,4 +17,10 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/providers', 'ProvidersController@index');
+
+Route::get('/providers/{provider}', 'ProvidersController@show');
+
+Route::post('/providers/{provider}/users', 'UsersController@store');
+
+Route::get('/users/{user}/edit', 'UsersController@edit')

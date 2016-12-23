@@ -26,6 +26,7 @@ class User extends Authenticatable
 
     public function providers()
     {
-        this->belongsTo('App\Provider');
+        return $this->belongsTo('App\Provider');
     }
+
 }

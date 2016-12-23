@@ -24,4 +24,11 @@ class Provider extends Model
     {
         return $this->hasMany('App\User');
     }
+
+    public function addUser(User $user)
+    {
+        $user->password = bcrypt($user->password);
+        return $this->users()->save($user);
+    }
+
 }

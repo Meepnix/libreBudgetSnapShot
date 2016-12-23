@@ -8,8 +8,10 @@
                 <div class="panel-heading">Providers</div>
 
                 <div class="panel-body">
-                    @foreach ($orgs as $pro)
-                        <li> {{ $pro->name }} </li>
+                    <h2>Providers</h2>
+                    @foreach ($orgs as $provider)
+                        <li><a href="/providers/{{ $provider->id }}">  {{ $provider->name }} </a></li>
+
                     @endforeach
 
                 </div>
