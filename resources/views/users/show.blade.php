@@ -16,19 +16,15 @@
                         <li>{{ $user->name }}</li>
                     @endforeach
 
-                    <form method="POST" action="/providers/{{ $provider->id }}/users">
-                        {{ csrf_field() }}
-                        Name:<br>
-                        <input type="text" name="name"><br>
-                        Email:<br>
-                        <input type="text" name="email"><br>
-                        Password:<br>
-                        <input type="password" name="password"><br>
-
-                        <br>
-                        <button type="submit">Add user account</button>
-
-                    </form
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                 </div>
             </div>

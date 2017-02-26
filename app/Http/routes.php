@@ -17,10 +17,16 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/providers', 'ProvidersController@index');
+Route::get('providers', 'ProvidersController@index');
 
-Route::get('/providers/{provider}', 'ProvidersController@show');
+Route::get('providers/{provider}', 'ProvidersController@dash');
 
-Route::post('/providers/{provider}/users', 'UsersController@store');
+Route::get('providers/{provider}/users', 'UsersController@show');
 
-Route::get('/users/{user}/edit', 'UsersController@edit')
+Route::post('providers/{provider}/users/store', 'UsersController@store');
+
+Route::get('providers/{provider}/users/create', 'UsersController@create');
+
+Route::get('users/{user}/edit', 'UsersController@edit');
+
+Route::patch('users/{user}', 'UsersController@update');
