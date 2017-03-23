@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTypeToUsersTable extends Migration
+class AddActiveToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddTypeToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('type');
+            $table->boolean('active');
         });
     }
 
@@ -25,7 +25,7 @@ class AddTypeToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('type');
+            $table->dropColumn('active');
         });
     }
 }

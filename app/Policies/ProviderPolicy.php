@@ -20,7 +20,7 @@ class ProviderPolicy
     {
         //
     }
-    public function showUser(User $user, Provider $provider)
+    public function adminUser(User $user, Provider $provider)
     {
         return Auth::user()->provider_id === $provider->id && Auth::user()->type === "admin";
     }

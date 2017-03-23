@@ -12,9 +12,18 @@
                     {{ $provider->name }}
 
                     <h3>Users:</h3>
+
+                    <ul class="list-group">
+
                     @foreach ($provider->users as $user)
-                        <li>{{ $user->name }}</li>
+                        <li class="list-group-item clearfix">{{ $user->name }}
+                             <span class="pull-right">
+                                <a href="/users/{{ $user->id }}/edit" class="btn btn-default">Edit</a>
+                                <a href="http://google.com"class="btn btn-default">Delete X</a>
+                            </span>
+                        </li>
                     @endforeach
+                    </ul>
 
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">

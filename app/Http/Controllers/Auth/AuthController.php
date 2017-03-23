@@ -7,6 +7,9 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Auth;
+use Illuminate\Http\Request;
+use App\Http\Requests;
 
 class AuthController extends Controller
 {
@@ -73,4 +76,20 @@ class AuthController extends Controller
             'type' => $data('type'),
         ]);
     }
+
+    /**
+     * Add active condition to authentication.
+     *
+     * @param  Request  $request
+     * @return array_add
+     */
+
+    public function getCredentials(Request $request)
+    {
+        $credentials = $request->only($this->loginUsername(), 'password');
+
+        return array_add($credentials, 'active', '1');
+    }
+
+
 }

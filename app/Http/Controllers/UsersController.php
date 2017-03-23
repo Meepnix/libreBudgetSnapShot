@@ -29,15 +29,9 @@ class UsersController extends Controller
 
     public function show(Provider $provider)
     {
-        //$this->authorize($provider);
 
-        //if (policy(User::class)->show($provider)) {
-            //return('pants');
-        //}
-
-        if (Gate::denies('showUser', $provider)) {
+        if (Gate::denies('adminUser', $provider)) {
             return 'Access denied';
-
         }
 
         return view('users\show', compact('provider'));
@@ -45,11 +39,19 @@ class UsersController extends Controller
 
     public function create(Provider $provider)
     {
+        if (Gate::denies('adminUser', $provider)) {
+            return 'Access denied';
+        }
+
         return view('users\create', compact('provider'));
     }
 
     public function edit(User $user)
     {
+        if (Gate::denies('adminUser', $user->providers)) {
+            return 'Access denied';
+        }
+
         return view('users\edit', compact('user'));
     }
 
