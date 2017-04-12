@@ -17,7 +17,8 @@ class Provider extends Model
         'email',
         'phone',
         'fax',
-        'logo_link'
+        'logo_link',
+        'active',
     ];
 
     public function users()

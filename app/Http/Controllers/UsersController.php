@@ -60,6 +60,8 @@ class UsersController extends Controller
 
         $user->update($request->all());
 
+        session()->flash('flash_message', 'Saved');
+
         return back();
 
     }
