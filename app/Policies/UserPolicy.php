@@ -10,9 +10,21 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class UserPolicy
 {
     use HandlesAuthorization;
+    use HandlesAuthorization;
 
-    public function show(Provider $provider)
+    /**
+     * Create a new policy instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        return Auth::user()->provider_id === $provider->id;
+        //
+    }
+
+
+    public function show(User $user)
+    {
+        return Auth::user()->provider_id === $provider->id && Auth::user()->type === "admin";
     }
 }

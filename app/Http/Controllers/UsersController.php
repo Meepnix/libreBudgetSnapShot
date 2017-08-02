@@ -30,7 +30,7 @@ class UsersController extends Controller
     public function show(Provider $provider)
     {
 
-        if (Gate::denies('adminUser', $provider)) {
+        if (Gate::denies('userIsAdmin', $provider)) {
             return 'Access denied';
         }
 
@@ -39,7 +39,7 @@ class UsersController extends Controller
 
     public function create(Provider $provider)
     {
-        if (Gate::denies('adminUser', $provider)) {
+        if (Gate::denies('userIsAdmin', $provider)) {
             return 'Access denied';
         }
 
@@ -48,7 +48,7 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
-        if (Gate::denies('adminUser', $user->providers)) {
+        if (Gate::denies('userIsAdmin', $user->providers)) {
             return 'Access denied';
         }
 
@@ -57,6 +57,9 @@ class UsersController extends Controller
 
     public function update(Request $request, User $user)
     {
+        if (Gate::denies('userIsAdmin', $user->providers)) {
+            return 'Access denied';
+        }
 
         $user->update($request->all());
 

@@ -48,12 +48,12 @@ Route::post('password/reset', 'Auth\PasswordController@reset');
 
 Route::get('providers', 'ProvidersController@index');
 
-Route::get('providers/{provider}/users', 'UsersController@show');
+Route::get('providers/{provider}/users', 'UsersController@show')->name('providers.users.show');
 
 Route::post('providers/{provider}/users/store', 'UsersController@store');
 
 Route::get('providers/{provider}/users/create', 'UsersController@create');
 
-Route::get('users/{user}/edit', 'UsersController@edit');
+Route::get('users/{user}/edit', 'UsersController@edit')->name('providers.users.edit');
 
 Route::patch('users/{user}', 'UsersController@update');
