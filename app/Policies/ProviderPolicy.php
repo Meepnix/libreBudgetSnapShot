@@ -28,7 +28,7 @@ class ProviderPolicy
         }
     }
 
-    public function userIsAdmin(User $user, Provider $provider)
+    public function isAdmin(User $user, Provider $provider)
     {
         return Auth::user()->provider_id === $provider->id && Auth::user()->type === "admin";
     }

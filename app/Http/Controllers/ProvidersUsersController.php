@@ -12,6 +12,12 @@ use Auth;
 
 class ProvidersUsersController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function store(Request $request, Provider $provider)
     {
         $this->validate($request, [
@@ -30,7 +36,7 @@ class ProvidersUsersController extends Controller
     public function show(Provider $provider)
     {
 
-        if (Gate::denies('userIsAdmin', $provider)) {
+        if (Gate::denies('isAdmin', $provider)) {
             return 'Access denied';
         }
 
@@ -39,7 +45,7 @@ class ProvidersUsersController extends Controller
 
     public function create(Provider $provider)
     {
-        if (Gate::denies('userIsAdmin', $provider)) {
+        if (Gate::denies('isAdmin', $provider)) {
             return 'Access denied';
         }
 
@@ -48,16 +54,16 @@ class ProvidersUsersController extends Controller
 
     public function edit(Provider $provider, User $user)
     {
-        if (Gate::denies('userIsAdmin', $user->providers)) {
+        if (Gate::denies('isAdmin', $user->providers)) {
             return 'Access denied';
         }
 
-        return view('users\edit', compact('provider', 'user'));
+        return view('providersUsers\edit', compact('provider', 'user'));
     }
 
     public function update(Request $request, Provider $provider, User $user)
     {
-        if (Gate::denies('userIsAdmin', $user->providers)) {
+        if (Gate::denies('isAdmin', $user->providers)) {
             return 'Access denied';
         }
 

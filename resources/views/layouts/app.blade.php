@@ -55,7 +55,7 @@
                </li>
 
                <!-- Show user accounts to provider admin -->
-               @can('userIsAdmin', Auth::user()->providers)
+               @can('isAdmin', Auth::user()->providers)
 
                     <li>
                         <a href="{{ route('providers.users.show', Auth::user()->providers->id) }}">Users</a>

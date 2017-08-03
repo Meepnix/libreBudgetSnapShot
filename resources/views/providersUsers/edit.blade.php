@@ -22,6 +22,12 @@
                         <input type="text" name="name" value="{{ $user->name }}"><br>
                         Email:<br>
                         <input type="text" name="email" value="{{ $user->email }}"><br>
+                        Type:<br>
+                        {{ Form::select('type', [
+                            'admin' => 'admin',
+                            'user' => 'user'],
+                            $user->type
+                        ) }}
 
                         <br>
                         <button type="submit">Edit user account</button>
