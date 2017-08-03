@@ -20,9 +20,22 @@ class ProviderPolicy
     {
         //
     }
+
+    public function before($user, $provider)
+    {
+        if (Auth::user()->type === "superadmin") {
+            return true;
+        }
+    }
+
     public function userIsAdmin(User $user, Provider $provider)
     {
         return Auth::user()->provider_id === $provider->id && Auth::user()->type === "admin";
+    }
+
+    public function isUser(User $user, Provider $provider)
+    {
+        return Auth::user()->id === $user->id;
     }
 
 }

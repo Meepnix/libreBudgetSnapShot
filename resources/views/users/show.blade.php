@@ -18,7 +18,7 @@
                     @foreach ($provider->users as $user)
                         <li class="list-group-item clearfix">{{ $user->name }}
                              <span class="pull-right">
-                                <a href="{{ route('providers.users.edit', $user->id) }}" class="btn btn-default">Edit</a>
+                                <a href="{{ route('providers.users.edit', [$provider->id, $user->id]) }}" class="btn btn-default">Edit</a>
                                 <a href="http://google.com"class="btn btn-default">Delete X</a>
                             </span>
                         </li>
