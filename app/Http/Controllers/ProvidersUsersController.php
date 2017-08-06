@@ -54,7 +54,7 @@ class ProvidersUsersController extends Controller
 
     public function edit(Provider $provider, User $user)
     {
-        if (Gate::denies('isAdmin', $user->providers)) {
+        if (Gate::forUser($user)->denies('isAdminExclude', $provider)) {
             return 'Access denied';
         }
 
@@ -63,7 +63,7 @@ class ProvidersUsersController extends Controller
 
     public function update(Request $request, Provider $provider, User $user)
     {
-        if (Gate::denies('isAdmin', $user->providers)) {
+        if (Gate::forUser($user)->denies('isAdminExclude', $provider)) {
             return 'Access denied';
         }
 

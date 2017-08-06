@@ -30,7 +30,21 @@ class ProviderPolicy
 
     public function isAdmin(User $user, Provider $provider)
     {
-        return Auth::user()->provider_id === $provider->id && Auth::user()->type === "admin";
+        return Auth::user()->provider_id === $provider->id
+        && Auth::user()->type === "admin";
+    }
+    /**
+    * Only allow provider admin access excluding it's own record.
+    *
+    * @param User $user  User record being accessed object.
+    * @param Provider $provider
+    * @return bool
+    */
+    public function isAdminExclude(User $user, Provider $provider)
+    {
+        return Auth::user()->provider_id === $provider->id
+        && Auth::user()->type === "admin"
+        && !(Auth::user()->id === $user->id);
     }
 
     public function isUser(User $user, Provider $provider)
