@@ -12,7 +12,6 @@ use Auth;
 
 class ProvidersUsersController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -40,7 +39,7 @@ class ProvidersUsersController extends Controller
             return 'Access denied';
         }
 
-        return view('users\show', compact('provider'));
+        return view('providersUsers\show', compact('provider'));
     }
 
     public function create(Provider $provider)
@@ -49,7 +48,7 @@ class ProvidersUsersController extends Controller
             return 'Access denied';
         }
 
-        return view('users\create', compact('provider'));
+        return view('providersUsers\create', compact('provider'));
     }
 
     public function edit(Provider $provider, User $user)
@@ -67,6 +66,13 @@ class ProvidersUsersController extends Controller
             return 'Access denied';
         }
 
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed',
+            'type' => 'required',
+        ]);
+
         $user->update($request->all());
 
         session()->flash('flash_message', 'Saved');
@@ -74,4 +80,5 @@ class ProvidersUsersController extends Controller
         return back();
 
     }
+
 }

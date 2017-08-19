@@ -15,7 +15,7 @@
                 <div class="panel-heading">Edit User</div>
 
                 <div class="panel-body">
-                    <form method="POST" action="/providers/{{ $provider->id }}/users/{{ $user->id }}">
+                    <form method="POST" action="/users/{{ $user->id }}">
                         {{ method_field('PATCH') }}
                         {{ csrf_field() }}
                         Name:<br>

@@ -57,3 +57,5 @@ Route::get('providers/{provider}/users/create', 'ProvidersUsersController@create
 Route::get('providers/{provider}/users/edit/{user}', 'ProvidersUsersController@edit')->name('providers.users.edit');
 
 Route::patch('providers/{provider}/users/{user}', 'ProvidersUsersController@update');
+
+Route::get('users/edit/{user}', 'UsersController@edit')->name('users.edit');

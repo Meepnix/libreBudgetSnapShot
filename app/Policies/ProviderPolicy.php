@@ -47,9 +47,10 @@ class ProviderPolicy
         && !(Auth::user()->id === $user->id);
     }
 
-    public function isUser(User $user, Provider $provider)
+    public function isTest(User $user)
     {
-        return Auth::user()->id === $user->id;
+        dd('providerpolicy');
+        return true;
     }
 
 }
