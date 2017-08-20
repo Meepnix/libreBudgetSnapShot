@@ -19,7 +19,13 @@
                         <li class="list-group-item clearfix">{{ $user->name }}
                              <span class="pull-right">
                                 <a href="{{ route('providers.users.edit', [$provider->id, $user->id]) }}" class="btn btn-default">Edit</a>
-                                <a href="http://google.com"class="btn btn-default">Delete X</a>
+                                <form action="{{ route('providers.users.delete', [$provider->id, $user->id]) }}" method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fa fa-btn fa-trash"></i>Delete
+                                    </button>
+                                </form>
                             </span>
                         </li>
                     @endforeach

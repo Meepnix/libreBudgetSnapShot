@@ -81,4 +81,9 @@ class ProvidersUsersController extends Controller
 
     }
 
+    public function destroy(Request $request, Provider $provider, User $user)
+    {
+        $provider->deleteUser($user);
+    }
+
 }

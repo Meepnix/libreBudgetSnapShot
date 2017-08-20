@@ -58,4 +58,6 @@ Route::get('providers/{provider}/users/edit/{user}', 'ProvidersUsersController@e
 
 Route::patch('providers/{provider}/users/{user}', 'ProvidersUsersController@update');
 
+Route::delete('providers/{provider}/users/{user}', 'ProvidersUsersController@destroy')->name('providers.users.delete');
+
 Route::get('users/edit/{user}', 'UsersController@edit')->name('users.edit');

@@ -32,4 +32,10 @@ class Provider extends Model
         return $this->users()->save($user);
     }
 
+    public function deleteUser(User $user)
+    {
+        $user->delete();
+    }
+
+
 }
