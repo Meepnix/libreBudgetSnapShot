@@ -52,7 +52,7 @@ Route::get('providers/{provider}/users', 'ProvidersUsersController@show')->name(
 
 Route::post('providers/{provider}/users/store', 'ProvidersUsersController@store');
 
-Route::get('providers/{provider}/users/create', 'ProvidersUsersController@create');
+Route::get('providers/{provider}/users/create', 'ProvidersUsersController@create')->name('providers.users.create');
 
 Route::get('providers/{provider}/users/edit/{user}', 'ProvidersUsersController@edit')->name('providers.users.edit');
 

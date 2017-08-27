@@ -29,6 +29,8 @@ class ProvidersUsersController extends Controller
             New User($request->all())
         );
 
+        session()->flash('flash_message', 'User Created');
+
         return back();
     }
 
@@ -68,8 +70,8 @@ class ProvidersUsersController extends Controller
 
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
+            //Ignore unique rule for existing unique email address
+            'email' => 'required|email|unique:users,email,'.$user->id,
             'type' => 'required',
         ]);
 
@@ -83,7 +85,15 @@ class ProvidersUsersController extends Controller
 
     public function destroy(Request $request, Provider $provider, User $user)
     {
-        $provider->deleteUser($user);
+        if (Gate::forUser($user)->denies('isAdminExclude', $provider)) {
+            return 'Access denied';
+        }
+
+        $user->delete();
+
+        session()->flash('flash_message', 'User deleted');
+
+        return back();
     }
 
 }

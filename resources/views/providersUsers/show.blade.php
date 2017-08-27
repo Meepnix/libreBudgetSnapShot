@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container">
+    @if (session()->has('flash_message'))
+        <div id="savedMessage" class="alert alert-success" role="alert">
+            {{ session()->get('flash_message') }}
+        </div>
+    @endif
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
@@ -12,7 +17,9 @@
                     {{ $provider->name }}
 
                     <h3>Users:</h3>
-
+                    <a href="{{ route('providers.users.create', [$provider->id]) }}" class="btn btn-primary">
+                        <i class="fa fa-btn fa-plus-square"></i>Create
+                    </a>
                     <ul class="list-group">
 
                     @foreach ($provider->users as $user)

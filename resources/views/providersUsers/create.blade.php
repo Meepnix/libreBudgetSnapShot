@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container">
+    @if (session()->has('flash_message'))
+        <div id="savedMessage" class="alert alert-success" role="alert">
+            {{ session()->get('flash_message') }}
+        </div>
+    @endif
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
@@ -22,7 +27,7 @@
                         Password:<br>
                         <input type="password" name="password"><br>
                         Confirm Password:<br>
-                        <input type="password_confirmation" name="password"><br>
+                        <input type="password" name="password_confirmation"><br>
                         Type:<br>
                         <select name="type">
                             <option value="user">user</option>
