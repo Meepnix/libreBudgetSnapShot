@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
+use Illuminate\Http\Request;
 
 class Provider extends Model
 {
@@ -26,10 +28,15 @@ class Provider extends Model
         return $this->hasMany('App\User');
     }
 
-    public function addUser(User $user)
+    public function addUser(Request $request)
     {
-        $user->password = bcrypt($user->password);
-        return $this->users()->save($user);
+
+        $new = New User($request->all());
+        $new->password = bcrypt($request->input('password'));
+        $new->type = $request->input('type');
+        //$user->password = bcrypt($user->password);
+
+        return $this->users()->save($new);
     }
 
     public function deleteUser(User $user)

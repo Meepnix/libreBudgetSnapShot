@@ -9,6 +9,7 @@ use App\Provider;
 use App\User;
 use Gate;
 use Auth;
+use Input;
 
 class ProvidersUsersController extends Controller
 {
@@ -25,9 +26,7 @@ class ProvidersUsersController extends Controller
             'password' => 'required|min:6|confirmed',
             'type' => 'required',
         ]);
-        $provider->addUser(
-            New User($request->all())
-        );
+        $provider->addUser($request);
 
         session()->flash('flash_message', 'User Created');
 
