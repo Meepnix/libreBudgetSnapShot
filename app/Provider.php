@@ -28,6 +28,11 @@ class Provider extends Model
         return $this->hasMany('App\User');
     }
 
+    public function locations()
+    {
+        return $this->hasMany('App\Location');
+    }
+
     public function addUser(Request $request)
     {
 
