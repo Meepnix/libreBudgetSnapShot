@@ -15,4 +15,9 @@ class LocationsController extends Controller
         $providers = \App\Provider::all();
         return view('locations\show', compact('providers'));
     }
+
+    public function create(Provider $provider)
+    {
+        return view('locations\create', compact('provider'));
+    }
 }

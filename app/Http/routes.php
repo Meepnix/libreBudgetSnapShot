@@ -48,18 +48,20 @@ Route::post('password/reset', 'Auth\PasswordController@reset');
 
 Route::get('providers', 'ProvidersController@index');
 
+
+// Users
 Route::get('providers/{provider}/users', 'ProvidersUsersController@show')->name('providers.users.show');
-
 Route::post('providers/{provider}/users/store', 'ProvidersUsersController@store');
-
 Route::get('providers/{provider}/users/create', 'ProvidersUsersController@create')->name('providers.users.create');
-
 Route::get('providers/{provider}/users/edit/{user}', 'ProvidersUsersController@edit')->name('providers.users.edit');
-
 Route::patch('providers/{provider}/users/{user}', 'ProvidersUsersController@update');
-
 Route::delete('providers/{provider}/users/{user}', 'ProvidersUsersController@destroy')->name('providers.users.delete');
-
 Route::get('users/edit/{user}', 'UsersController@edit')->name('users.edit');
 
-Route::get('locations/show', 'LocationsController@show');
+// Locations
+Route::get('locations', 'LocationsController@show');
+Route::get('locations/{provider}/create', 'LocationsController@create')->name('locations.create');
+//Route::get('locations/edit/{location}', 'LocationsController@edit')->name('locations.edit');
+//Route::post('locations/{provider}/store', 'LocationsController@store');
+//Route::patch('locations/{location}', 'LocationsController@update');
+//Route::delete('locations/{location}', 'Locationscontroller@destroy')->name('locations.delete');

@@ -24,6 +24,11 @@
                                         {{ $provider->name }}
                                     </a>
                                 </h5>
+                                <span class="pull-right">
+                                    <a href="{{ route('locations.create', [$provider->id]) }}" class="btn btn-primary">
+                                        <i class="fa fa-btn fa-plus-square"></i>Create
+                                    </a>
+                                </span>
                             </div>
 
                             <div id="collapse{{ $key }}" class="collapse" role="tabpanel" aria-labelledby="heading{{ $key }}" data-parent="#accordion">
