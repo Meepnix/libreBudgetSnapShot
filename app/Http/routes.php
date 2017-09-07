@@ -61,7 +61,7 @@ Route::get('users/edit/{user}', 'UsersController@edit')->name('users.edit');
 // Locations
 Route::get('locations', 'LocationsController@show');
 Route::get('locations/{provider}/create', 'LocationsController@create')->name('locations.create');
-//Route::get('locations/edit/{location}', 'LocationsController@edit')->name('locations.edit');
-//Route::post('locations/{provider}/store', 'LocationsController@store');
-//Route::patch('locations/{location}', 'LocationsController@update');
-//Route::delete('locations/{location}', 'Locationscontroller@destroy')->name('locations.delete');
+Route::get('locations/edit/{location}', 'LocationsController@edit')->name('locations.edit');
+Route::post('locations/{provider}/store', 'LocationsController@store');
+Route::patch('locations/{location}', 'LocationsController@update');
+Route::delete('locations/{location}', 'LocationsController@destroy')->name('locations.delete');

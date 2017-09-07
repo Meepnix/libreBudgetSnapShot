@@ -16,4 +16,6 @@ class Location extends Model
         return $this->belongsTo('App\Provider', 'provider_id');
     }
 
+    
+
 }

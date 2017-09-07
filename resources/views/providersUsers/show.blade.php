@@ -25,12 +25,15 @@
                     @foreach ($provider->users as $user)
                         <li class="list-group-item clearfix">{{ $user->name }}
                              <span class="pull-right">
-                                <a href="{{ route('providers.users.edit', [$provider->id, $user->id]) }}" class="btn btn-default">Edit</a>
+                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                <a href="{{ route('providers.users.edit', [$provider->id, $user->id]) }}" class="btn btn-secondary" role="button">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
                                 <form action="{{ route('providers.users.delete', [$provider->id, $user->id]) }}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-danger">
-                                        <i class="fa fa-btn fa-trash"></i>Delete
+                                        <i class="fa fa-btn fa-trash"></i>
                                     </button>
                                 </form>
                             </span>

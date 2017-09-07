@@ -49,5 +49,11 @@ class Provider extends Model
         $user->delete();
     }
 
+    public function addLocation(Request $request)
+    {
+        return $this->locations()->create($request->all());
+
+    }
+
 
 }

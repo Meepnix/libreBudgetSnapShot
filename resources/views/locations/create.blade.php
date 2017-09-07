@@ -18,7 +18,7 @@
 
                     <h3>Create Location</h3>
 
-                    <form method="POST" action="/location/{provider}/store">
+                    <form method="POST" action="/locations/{{ $provider->id }}/store">
                         {{ csrf_field() }}
                         Name:<br>
                         <input type="text" name="name" value="{{ old('name') }}"><br>

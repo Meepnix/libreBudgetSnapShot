@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-    <link href="{{ URL::asset('css/sidebar.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/sidebar2.css') }}" rel="stylesheet">
 
     <style>
         body {
@@ -28,64 +28,59 @@
 </head>
 
 
-<body id="app-layout">
+<body>
     <div id="wrapper">
-       <div class="overlay"></div>
+
 
        <!-- Sidebar -->
        @if (!Auth::guest())
-       <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-           <ul class="nav sidebar-nav">
-               <li class="sidebar-brand">
-                   <a href="#">
-                      {{ Auth::user()->providers->name }}
-                   </a>
-               </li>
-               <li>
-                   <a href="#">Home</a>
-               </li>
-               <li>
-                   <a href="#">Account</a>
-               </li>
-               <li>
-                   <a href="#">Provider Profile</a>
-               </li>
-               <li>
-                   <a href="#">Statistics</a>
-               </li>
+       <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        {{ Auth::user()->providers->name }}
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">Account</a>
+                </li>
+                <li>
+                    <a href="#">Provider Profile</a>
+                </li>
+                <li>
+                    <a href="#">Statistics</a>
+                </li>
+                <!-- Show user accounts to provider admin -->
+                @can('isAdmin', Auth::user()->providers)
 
-               <!-- Show user accounts to provider admin -->
-               @can('isAdmin', Auth::user()->providers)
+                     <li>
+                         <a href="{{ route('providers.users.show', Auth::user()->providers->id) }}">Users</a>
+                     </li>
 
-                    <li>
-                        <a href="{{ route('providers.users.show', Auth::user()->providers->id) }}">Users</a>
-                    </li>
+                @endcan
 
-               @endcan
-
-           </ul>
-       </nav>
-       @endif
-
-       <!-- /#sidebar-wrapper -->
-       @if (!Auth::guest())
-       <div id="page-content-wrapper">
-
-            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
-                <span class="hamb-top"></span>
-    			<span class="hamb-middle"></span>
-				<span class="hamb-bottom"></span>
-            </button>
+            </ul>
+        </div>
         @endif
 
-            <div class="container">
+       <!-- /#sidebar-wrapper -->
 
-            <ul>
+       <div id="page-content-wrapper">
+           @if (Auth::guest())
+               <a href="{{ url('/login') }}">Login</a>
+           @else
+            <div class="container-fluid">
+
+                <ul>
 
                     <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <a href="{{ url('/login') }}">Login</a>
-                    @else
+
+                        <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">
+                            <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+                        </a>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -97,10 +92,10 @@
 
                             </ul>
                         </li>
-                    @endif
+
                 </ul>
             </div>
-
+            @endif
 
 
 
@@ -110,10 +105,13 @@
     </div>
 
     <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="{{ URL::asset('js/sidebar.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+    <script src="{{ URL::asset('js/sidebar.js') }}"></script>
+
     <script>
     $(function() {
         // setTimeout() function will be fired after page is loaded
@@ -125,6 +123,12 @@
         }, 2000);
     });
     </script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+   </script>
+
 </body>
 </html>

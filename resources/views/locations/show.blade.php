@@ -36,6 +36,26 @@
                                     @foreach ($provider->locations as $location )
                                     <li class="list-group-item clearfix">
                                         {{ $location->name }}
+                                        <span class="pull-right">
+                                            <ul style="list-style-type:none">
+
+                                            <li>
+
+                                                <a href="{{ route('locations.edit', [$location->id]) }}" class="btn btn-secondary" role="link">
+                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <form action="{{ route('locations.delete', [$location->id]) }}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('DELETE') }}
+                                                    <button type="button" class="btn btn-danger">
+                                                        <i class="fa fa-btn fa-trash"></i>Delete
+                                                    </button>
+                                            </li>
+                                            </form>
+                                            </ul>
+                                        </span>
                                     </li>
                                     @endforeach
                                 </div>
