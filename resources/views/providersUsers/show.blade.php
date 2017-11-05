@@ -24,8 +24,8 @@
 
                     @foreach ($provider->users as $user)
                         <li class="list-group-item clearfix">{{ $user->name }}
+                            @if (!(Auth::user()->name === $user->name))
                              <span class="pull-right">
-                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 <a href="{{ route('providers.users.edit', [$provider->id, $user->id]) }}" class="btn btn-secondary" role="button">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
@@ -37,6 +37,7 @@
                                     </button>
                                 </form>
                             </span>
+                            @endif
                         </li>
                     @endforeach
                     </ul>

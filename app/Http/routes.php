@@ -49,13 +49,15 @@ Route::post('password/reset', 'Auth\PasswordController@reset');
 Route::get('providers', 'ProvidersController@index');
 
 
-// Users
+// Providers
 Route::get('providers/{provider}/users', 'ProvidersUsersController@show')->name('providers.users.show');
 Route::post('providers/{provider}/users/store', 'ProvidersUsersController@store');
 Route::get('providers/{provider}/users/create', 'ProvidersUsersController@create')->name('providers.users.create');
 Route::get('providers/{provider}/users/edit/{user}', 'ProvidersUsersController@edit')->name('providers.users.edit');
 Route::patch('providers/{provider}/users/{user}', 'ProvidersUsersController@update');
 Route::delete('providers/{provider}/users/{user}', 'ProvidersUsersController@destroy')->name('providers.users.delete');
+
+// Users
 Route::get('users/edit/{user}', 'UsersController@edit')->name('users.edit');
 
 // Locations

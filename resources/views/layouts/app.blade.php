@@ -31,11 +31,10 @@
 <body>
     <div id="wrapper">
 
-
        <!-- Sidebar -->
        @if (!Auth::guest())
        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
+           <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
                         {{ Auth::user()->providers->name }}
@@ -69,66 +68,68 @@
        <!-- /#sidebar-wrapper -->
 
        <div id="page-content-wrapper">
+           <div class="container-fluid">
            @if (Auth::guest())
                <a href="{{ url('/login') }}">Login</a>
            @else
-            <div class="container-fluid">
+           <ul>
+               <!-- Authentication Links -->
 
-                <ul>
+                   <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">
+                       <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+                   </a>
+                   <li class="dropdown">
+                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                           {{ Auth::user()->name }} <span class="caret"></span>
+                       </a>
 
-                    <!-- Authentication Links -->
+                       <ul class="dropdown-menu" role="menu">
+                           <li><a href="{{ route('users.edit', [Auth::user()->id]) }}">Account</a></li>
+                           <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
 
-                        <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">
-                            <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
-                        </a>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
+                       </ul>
+                   </li>
 
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('users.edit', [Auth::user()->id]) }}">Account</a></li>
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+           </ul>
+           @endif
 
-                            </ul>
-                        </li>
 
-                </ul>
+
+                @yield('content')
+
             </div>
-            @endif
 
 
 
-    @yield('content')
+
+
 
     </div>
     </div>
 
     <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
-    <script src="{{ URL::asset('js/sidebar.js') }}"></script>
+
 
     <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
     $(function() {
         // setTimeout() function will be fired after page is loaded
         // it will wait for 2 sec. and then will fire
         // $("#savedMessage").hide() function
-        console.log('pies');
         setTimeout(function() {
             $("#savedMessage").hide('blind', {}, 200)
         }, 2000);
     });
     </script>
-    <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-   </script>
 
 </body>
 </html>
