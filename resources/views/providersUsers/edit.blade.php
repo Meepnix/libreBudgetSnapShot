@@ -33,6 +33,8 @@
                         <button type="submit">Edit user account</button>
 
                     </form>
+                    
+                    <a href="{{ route('providers.users.show', [$provider->id]) }}" class="btn btn-default">Back</a>
 
                 </div>
             </div>

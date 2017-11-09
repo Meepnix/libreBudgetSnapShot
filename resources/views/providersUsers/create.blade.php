@@ -37,7 +37,8 @@
                         <br>
                         <button type="submit">Add user account</button>
 
-                    </form
+                    </form>
+                    <a href="{{ route('providers.users.show', [$provider->id]) }}" class="btn btn-default">Back</a>
 
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">

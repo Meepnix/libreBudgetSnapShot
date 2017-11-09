@@ -8,7 +8,7 @@
     <title>Laravel</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
     <!-- Styles -->
@@ -67,31 +67,42 @@
 
        <!-- /#sidebar-wrapper -->
 
-       <div id="page-content-wrapper">
-           <div class="container-fluid">
-           @if (Auth::guest())
-               <a href="{{ url('/login') }}">Login</a>
-           @else
-           <ul>
-               <!-- Authentication Links -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                    @if (!Auth::guest())    
+                        <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">
+                            <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+                        </a>
+                    @endif
+                    </div>
+                    <div class="col">
+                        <span class="pull-right">
+    
+                        @if (Auth::guest())
+                            <a href="{{ url('/login') }}">Login</a>
+                        @else
+                            <ul>
+                        <!-- Authentication Links -->
 
-                   <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">
-                       <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
-                   </a>
-                   <li class="dropdown">
-                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                           {{ Auth::user()->name }} <span class="caret"></span>
-                       </a>
+                        
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
 
-                       <ul class="dropdown-menu" role="menu">
-                           <li><a href="{{ route('users.edit', [Auth::user()->id]) }}">Account</a></li>
-                           <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ route('users.edit', [Auth::user()->id]) }}">Account</a></li>
+                                    <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
 
-                       </ul>
-                   </li>
+                                </ul>
+                                </li>
 
-           </ul>
-           @endif
+                            </ul>
+                        </span>
+           
+                    </div>
+                </div>
+                    @endif
 
 
 

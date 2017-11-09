@@ -28,9 +28,7 @@ class ProvidersUsersController extends Controller
         ]);
         $provider->addUser($request);
 
-        session()->flash('flash_message', 'User Created');
-
-        return back();
+        return redirect()->route('providers.users.show', [$provider])->with('flash_message', 'User ' . $request->name . ' created');
     }
 
     public function show(Provider $provider)
@@ -76,9 +74,7 @@ class ProvidersUsersController extends Controller
 
         $user->update($request->all());
 
-        session()->flash('flash_message', 'Saved');
-
-        return back();
+        return redirect()->route('providers.users.show', [$provider])->with('flash_message', 'User ' . $user->name . ' updated');
 
     }
 
