@@ -83,26 +83,28 @@
                         @if (Auth::guest())
                             <a href="{{ url('/login') }}">Login</a>
                         @else
-                            <ul>
+                            
                         <!-- Authentication Links -->
 
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i>&nbsp;{{ Auth::user()->name }}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="{{ route('users.edit', [Auth::user()->id]) }}">Account</a>
+                                        <a class="dropdown-item" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
+                                    </div>
+                                </div>
                         
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                                
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ route('users.edit', [Auth::user()->id]) }}">Account</a></li>
-                                    <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-
-                                </ul>
-                                </li>
-
-                            </ul>
+                            
+                        @endif
                         </span>
            
                     </div>
                 </div>
-                    @endif
+                    
 
 
 
