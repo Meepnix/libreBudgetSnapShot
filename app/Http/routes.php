@@ -59,6 +59,7 @@ Route::delete('providers/{provider}/users/{user}', 'ProvidersUsersController@des
 
 // Users
 Route::get('users/edit/{user}', 'UsersController@edit')->name('users.edit');
+Route::patch('users/{user}', 'UsersController@update');
 
 // Locations
 Route::get('locations', 'LocationsController@show');

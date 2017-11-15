@@ -26,4 +26,22 @@ class UsersController extends Controller
 
         return view('users\edit', compact('user'));
     }
+    
+    public function update(Request $request, User $user)
+    {
+        
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed',
+        ]);
+        
+        
+        $user->update($request->all());
+
+        session()->flash('flash_message', 'User deleted');
+
+        return back();
+    }
+    
 }
