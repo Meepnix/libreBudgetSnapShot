@@ -44,6 +44,7 @@ class Provider extends Model
         return $this->users()->save($new);
     }
 
+
     public function deleteUser(User $user)
     {
         $user->delete();

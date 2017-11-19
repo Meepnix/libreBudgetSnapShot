@@ -12,7 +12,7 @@ class LocationsController extends Controller
 {
     public function show()
     {
-        $providers = \App\Provider::all();
+        $providers = Provider::all();
         return view('locations\show', compact('providers'));
     }
 
@@ -28,7 +28,7 @@ class LocationsController extends Controller
         ]);
 
         $provider->addlocation($request);
-        return back();
+        return redirect()->route('locations.show')->with('flash_message', 'New location created');
     }
 
     public function edit(Location $location)
@@ -48,6 +48,16 @@ class LocationsController extends Controller
         session()->flash('flash_message', 'Saved');
 
         return back();
+    }
+
+    public function destroy(Request $request, Location $location)
+    {
+        $location->delete();
+
+        session()->flash('flash_message', 'Location delete');
+
+        return back();
+
     }
 
 }

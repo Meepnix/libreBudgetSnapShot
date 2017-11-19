@@ -21,27 +21,52 @@ class UsersController extends Controller
     public function edit(User $user)
     {
 
-        $this->authorizeForUser($user, 'isUser', $user);
+        if (Gate::forUser($user)->denies('isUser', $user)) {
+            return 'Access denied';
+        }
 
 
         return view('users\edit', compact('user'));
     }
-    
+
     public function update(Request $request, User $user)
     {
-        
+        if (Gate::forUser($user)->denies('isUser', $user)) {
+            return 'Access denied';
+        }
+
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
+            //Ignore unique rule for existing unique email address
+            'email' => 'required|email|unique:users,email,'.$user->id,
         ]);
-        
-        
+
+
         $user->update($request->all());
 
-        session()->flash('flash_message', 'User deleted');
+        session()->flash('flash_message', 'User Updated');
 
         return back();
     }
-    
+
+    public function updateReset(Request $request, User $user)
+    {
+        if (Gate::forUser($user)->denies('isUser', $user)) {
+            return 'Access denied';
+        }
+
+        $this->validate($request, [
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        $user->password = bcrypt($request->input('password'));
+
+        $user->save();
+
+        session()->flash('flash_message', 'Password changed');
+
+        return back();
+
+    }
+
 }

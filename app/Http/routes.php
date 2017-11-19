@@ -46,7 +46,7 @@ Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
 Route::post('password/reset', 'Auth\PasswordController@reset');
 
 
-Route::get('providers', 'ProvidersController@index');
+Route::get('providers', 'ProvidersController@show');
 
 
 // Providers
@@ -60,9 +60,10 @@ Route::delete('providers/{provider}/users/{user}', 'ProvidersUsersController@des
 // Users
 Route::get('users/edit/{user}', 'UsersController@edit')->name('users.edit');
 Route::patch('users/{user}', 'UsersController@update');
+Route::patch('users/{user}/reset', 'UsersController@updateReset');
 
 // Locations
-Route::get('locations', 'LocationsController@show');
+Route::get('locations', 'LocationsController@show')->name('locations.show');
 Route::get('locations/{provider}/create', 'LocationsController@create')->name('locations.create');
 Route::get('locations/edit/{location}', 'LocationsController@edit')->name('locations.edit');
 Route::post('locations/{provider}/store', 'LocationsController@store');

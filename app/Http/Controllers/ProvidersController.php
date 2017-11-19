@@ -16,20 +16,11 @@ class ProvidersController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(User $user)
-    {
-        if (Gate::denies('isUser', \App\Providers::class)) {
-            return 'Access denied';
-        }
-
-        $orgs = \App\Provider::all();
-        return view('providers\index', compact('orgs'));
-    }
-
+    
     public function show(\App\Provider $provider)
     {
-        //$orgs = \App\Provider::find($id);
+        $providers = Provider::all();
 
-        return view('providers\show', compact('provider'));
+        return view('providers\show', compact('providers'));
     }
 }

@@ -44,10 +44,7 @@
                     <a href="#">Home</a>
                 </li>
                 <li>
-                    <a href="#">Account</a>
-                </li>
-                <li>
-                    <a href="#">Provider Profile</a>
+                    <a href="{{ route('locations.show')}}">Locations</a>
                 </li>
                 <li>
                     <a href="#">Statistics</a>
@@ -71,7 +68,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col">
-                    @if (!Auth::guest())    
+                    @if (!Auth::guest())
                         <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">
                             <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
                         </a>
@@ -79,11 +76,11 @@
                     </div>
                     <div class="col">
                         <span class="pull-right">
-    
+
                         @if (Auth::guest())
                             <a href="{{ url('/login') }}">Login</a>
                         @else
-                            
+
                         <!-- Authentication Links -->
 
                                 <div class="dropdown">
@@ -95,16 +92,16 @@
                                         <a class="dropdown-item" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
                                     </div>
                                 </div>
-                        
-                                
 
-                            
+
+
+
                         @endif
                         </span>
-           
+
                     </div>
                 </div>
-                    
+
 
 
 

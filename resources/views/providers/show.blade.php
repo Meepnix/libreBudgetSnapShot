@@ -10,10 +10,16 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Locations</div>
+                <div class="panel-heading">Providers</div>
 
                 <div class="panel-body">
+                    <h2>Providers</h2>
+                    @foreach ($orgs as $provider)
+                        <li><a href="/providers/{{ $provider->id }}">  {{ $provider->name }} </a></li>
 
+                    @endforeach
+
+                    <!-- Start-->
 
                     @foreach ($providers as $key => $provider)
                     <div id="accordion" role="tablist">
@@ -61,16 +67,6 @@
                         </div>
                     @endforeach
                     </div>
-
-                    @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
 
                 </div>
             </div>

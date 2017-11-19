@@ -25,6 +25,8 @@
                         <button type="submit">Create location</button>
                     </form
 
+                    <a href="{{ route('locations.show') }}" class="btn btn-default">Back</a>
+
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
                             <ul>

@@ -28,13 +28,13 @@
                             <i class="fa fa-btn fa-repeat" aria-hidden="true"></i>Reset Password
                         </a>
                         <br>
-                        
+
                         <br>
                         <button type="submit">Edit user account</button>
-                       
-                    
+
+
                     </form>
-                    
+
                     <!-- Modal -->
                     <div class="modal fade" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -45,26 +45,37 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                
+
                                 <div class="modal-body">
-                                    <form action="/users/{{ $user->id }}" method="POST">
+                                    <form action="/users/{{ $user->id }}/reset" method="POST">
                                         {{ method_field('PATCH') }}
                                         {{ csrf_field() }}
                                         Password:<br>
                                         <input type="password" name="password"><br>
                                         Confirm Password:<br>
-                                        <input type="password_confirmation" name="password"><br>
-                                                    
+                                        <input type="password" name="password_confirmation"><br>
+                                        <br>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
                                         </button>
-                                        <button type="submit" class="btn btn-danger">Rest
+                                        <button type="submit" class="btn btn-danger">Reset
                                         </button>
                                     </form>
                                 </div>
                             </div>
-                                            
                         </div>
                     </div>
+
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+
 
                 </div>
             </div>

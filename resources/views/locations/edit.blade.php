@@ -23,7 +23,7 @@
                         <button type="submit">Save</button>
 
                     </form>
-
+                    <a href="{{ route('locations.show') }}" class="btn btn-default">Back</a>
                 </div>
             </div>
         </div>
