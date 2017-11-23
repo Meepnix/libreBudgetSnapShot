@@ -14,12 +14,9 @@
 
                 <div class="panel-body">
                     <h2>Providers</h2>
-                    @foreach ($orgs as $provider)
-                        <li><a href="/providers/{{ $provider->id }}">  {{ $provider->name }} </a></li>
-
-                    @endforeach
-
-                    <!-- Start-->
+                    <a href="{{ route('providers.create') }}" class="btn btn-primary">
+                        <i class="fa fa-btn fa-plus-square"></i>Create
+                    </a>
 
                     @foreach ($providers as $key => $provider)
                     <div id="accordion" role="tablist">
@@ -31,37 +28,43 @@
                                     </a>
                                 </h5>
                                 <span class="pull-right">
-                                    <a href="{{ route('locations.create', [$provider->id]) }}" class="btn btn-primary">
-                                        <i class="fa fa-btn fa-plus-square"></i>Create
-                                    </a>
+                                    @if ($provider->active)
+                                        <span class="badge badge-success">Active</span>
+                                    @else
+                                        <span class="badge badge-secondary">Inactive</span>
+                                    @endif
                                 </span>
                             </div>
 
                             <div id="collapse{{ $key }}" class="collapse" role="tabpanel" aria-labelledby="heading{{ $key }}" data-parent="#accordion">
                                 <div class="card-body">
-                                    @foreach ($provider->locations as $location )
                                     <li class="list-group-item clearfix">
-                                        {{ $location->name }}
-                                        <span class="pull-right">
-                                            <ul style="list-style-type:none">
+                                        Address Line 1: {{ $provider->address1 }}
+                                        <br>
+                                        Address Line 2: {{ $provider->address2 }}
+                                        <br>
+                                        Post code: {{ $provider->post_code }}
+                                        <br>
+                                        Website Link: {{ $provider->website }}
+                                        <br>
+                                        Telephone No.: {{ $provider->phone }}
+                                        <br>
+                                        Fax No.: {{ $provider->fax }}
+                                        <br>
+                                        Logo: {{ $provider->logo_link }}
+                                        <br>
+                                        <form action="#" method="POST">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <a href="{{ route('providers.edit', [$provider]) }}" class="btn btn-secondary" role="link">
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit
+                                            </a>
 
-                                            <li>
-                                                <form action="{{ route('locations.delete', [$location->id]) }}" method="POST">
-                                                    {{ csrf_field() }}
-                                                    {{ method_field('DELETE') }}
-                                                    <a href="{{ route('locations.edit', [$location->id]) }}" class="btn btn-secondary" role="link">
-                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit
-                                                    </a>
-
-                                                    <button type="submit" class="btn btn-danger">
-                                                        <i class="fa fa-btn fa-trash"></i>Delete
-                                                    </button>
-                                            </li>
-                                            </form>
-                                            </ul>
-                                        </span>
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa fa-btn fa-trash"></i>Delete
+                                            </button>
+                                        </form>
                                     </li>
-                                    @endforeach
                                 </div>
                             </div>
                         </div>

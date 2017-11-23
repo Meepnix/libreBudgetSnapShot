@@ -45,11 +45,15 @@ Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
 Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
 Route::post('password/reset', 'Auth\PasswordController@reset');
 
+// Providers Profile
+Route::get('providers', 'ProvidersController@show')->name('providers.show');
+Route::get('providers/{provider}/edit', 'ProvidersController@edit')->name('providers.edit');
+Route::patch('providers/{provider}', 'ProvidersController@update')->name('providers.update');
+Route::post('providers/store', 'ProvidersController@store')->name('providers.store');
+Route::get('providers/create', 'ProvidersController@create')->name('providers.create');
 
-Route::get('providers', 'ProvidersController@show');
 
-
-// Providers
+// Providers Users
 Route::get('providers/{provider}/users', 'ProvidersUsersController@show')->name('providers.users.show');
 Route::post('providers/{provider}/users/store', 'ProvidersUsersController@store');
 Route::get('providers/{provider}/users/create', 'ProvidersUsersController@create')->name('providers.users.create');

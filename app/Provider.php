@@ -20,7 +20,6 @@ class Provider extends Model
         'phone',
         'fax',
         'logo_link',
-        'active',
     ];
 
     public function users()
@@ -48,6 +47,15 @@ class Provider extends Model
     public function deleteUser(User $user)
     {
         $user->delete();
+    }
+
+    public function addProvider(Request $request)
+    {
+        $new = New Provider($request->all());
+        $new->active = 1;
+
+        return $new->save();
+
     }
 
     public function addLocation(Request $request)
