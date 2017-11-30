@@ -10,14 +10,14 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Providers</div>
+                <div class="panel-heading"><h2>Providers</h2></div>
 
                 <div class="panel-body">
-                    <h2>Providers</h2>
-                    <a href="{{ route('providers.create') }}" class="btn btn-primary">
-                        <i class="fa fa-btn fa-plus-square"></i>Create
-                    </a>
 
+                    <a href="{{ route('providers.create') }}" class="btn btn-primary">
+                        <i class="fa fa-btn fa-plus-square"></i>Create Provider
+                    </a>
+                    <p></p>
                     @foreach ($providers as $key => $provider)
                     <div id="accordion" role="tablist">
                         <div class="card">

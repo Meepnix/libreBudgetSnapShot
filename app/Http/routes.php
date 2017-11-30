@@ -73,3 +73,10 @@ Route::get('locations/edit/{location}', 'LocationsController@edit')->name('locat
 Route::post('locations/{provider}/store', 'LocationsController@store');
 Route::patch('locations/{location}', 'LocationsController@update');
 Route::delete('locations/{location}', 'LocationsController@destroy')->name('locations.delete');
+
+// Budget Groups
+Route::get('groups', 'GroupsController@show')->name('groups.show');
+Route::get('groups/create', 'GroupsController@create')->name('groups.create');
+Route::post('groups/store', 'GroupsController@store')->name('groups.store');
+Route::patch('groups/{group}', 'GroupsController@update')->name('groups.update');
+Route::get('groups/edit/{group}', 'GroupsController@edit')->name('groups.edit');

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     @if (session()->has('flash_message'))
         <div id="savedMessage" class="alert alert-success" role="alert">
@@ -10,26 +11,27 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading"><h2>{{ $provider->name }}</h2></div>
+                <div class="panel-heading"><h2>Budget Groups</h2></div>
 
                 <div class="panel-body">
-                    <h3>User accounts:</h3>
-                    <a href="{{ route('providers.users.create', [$provider->id]) }}" class="btn btn-primary">
-                        <i class="fa fa-btn fa-plus-square"></i>Create User
+
+                    <a href="{{ route('groups.create') }}" class="btn btn-primary">
+                        <i class="fa fa-btn fa-plus-square"></i>Create Budget Group
                     </a>
                     <p></p>
                     <ul class="list-group">
-                    @foreach ($provider->users as $user)
-                        <li class="list-group-item clearfix">{{ $user->name }}
+                    @foreach ($groups as $group)
+                        <li class="list-group-item clearfix">{{ $group->name }}
                             <span class="pull-right">
-                            @if (!(Auth::user()->name === $user->name))
-                                <a href="{{ route('providers.users.edit', [$provider->id, $user->id]) }}" class="btn btn-secondary" role="button">
+
+                                <a href="{{ route('groups.edit', [$group->id]) }}" class="btn btn-secondary" role="button">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit
                                 </a>
-
+                                {{--
                                 <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
                                     <i class="fa fa-btn fa-trash" aria-hidden="true"></i>Delete
                                 </a>
+                                --}}
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -42,9 +44,10 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                Do you wish to continue and delete user {{ $user->name }}?
+                                                Do you wish to continue and delete group {{ $group->name }}?
                                             </div>
                                             <div class="modal-footer">
+                                                {{--
                                                 <form action="{{ route('providers.users.delete', [$provider->id, $user->id]) }}" method="POST">
                                                     {{ csrf_field() }}
                                                     {{ method_field('DELETE') }}
@@ -52,15 +55,14 @@
                                                     </button>
                                                     <button type="submit" class="btn btn-danger">Yes
                                                     </button>
+
                                                 </form>
+                                                --}}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                @else
-                                <button type="button" aria-disabled="true" class="btn btn-secondary" disabled><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit</button>
-                                <button type="button" aria-disabled="true" class="btn btn-danger" disabled><i class="fa fa-btn fa-trash" aria-hidden="true"></i>Delete</button>
-                                @endif
+
                             </span>
                         </li>
                     @endforeach
@@ -81,4 +83,5 @@
         </div>
     </div>
 </div>
+
 @endsection

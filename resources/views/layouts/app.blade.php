@@ -52,11 +52,20 @@
                 <!-- Show user accounts to provider admin -->
                 @can('isAdmin', Auth::user()->providers)
 
-                     <li>
-                         <a href="{{ route('providers.users.show', Auth::user()->providers->id) }}">Users</a>
-                     </li>
+                <li>
+                    <a href="{{ route('providers.users.show', Auth::user()->providers->id) }}">Users</a>
+                </li>
 
                 @endcan
+                <!-- Show providers, super admin access to do -->
+                <li>
+                    <a href="{{ route('providers.show')}}">Providers</a>
+                </li>
+
+                <li>
+                    <a href="{{ route('groups.show')}}">Budget Groups</a>
+                </li>
+
 
             </ul>
         </div>

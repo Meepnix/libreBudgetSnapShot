@@ -16,7 +16,7 @@
                     <h2>Provider Name</h2>
                     {{ $provider->name }}
 
-                    <h3>Create User</h3>
+                    <h3>Create user account</h3>
 
                     <form method="POST" action="/providers/{{ $provider->id }}/users/store">
                         {{ csrf_field() }}
@@ -35,7 +35,7 @@
                         </select>
 
                         <br>
-                        <button type="submit">Add user account</button>
+                        <button type="submit">Save</button>
 
                     </form>
                     <a href="{{ route('providers.users.show', [$provider->id]) }}" class="btn btn-default">Back</a>

@@ -33,7 +33,7 @@ class ProvidersController extends Controller
         return redirect()->route('providers.show')->with('flash_message', 'Provider created');
     }
 
-    public function show(Provider $provider)
+    public function show()
     {
         $providers = Provider::all();
 

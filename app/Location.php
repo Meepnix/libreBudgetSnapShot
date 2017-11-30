@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Provider;
+
 class Location extends Model
 {
     protected $fillable = [
@@ -16,6 +18,6 @@ class Location extends Model
         return $this->belongsTo('App\Provider', 'provider_id');
     }
 
-    
+
 
 }
