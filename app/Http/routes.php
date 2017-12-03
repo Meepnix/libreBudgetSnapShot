@@ -61,6 +61,10 @@ Route::get('providers/{provider}/users/edit/{user}', 'ProvidersUsersController@e
 Route::patch('providers/{provider}/users/{user}', 'ProvidersUsersController@update');
 Route::delete('providers/{provider}/users/{user}', 'ProvidersUsersController@destroy')->name('providers.users.delete');
 
+// Providers Types
+Route::get('providers/{provider}/types', 'ProvidersTypesController@show')->name('providers.types.show');
+Route::get('providers/{provider}/types/create', 'ProvidersTypesController@create')->name('providers.types.create');
+
 // Users
 Route::get('users/edit/{user}', 'UsersController@edit')->name('users.edit');
 Route::patch('users/{user}', 'UsersController@update');

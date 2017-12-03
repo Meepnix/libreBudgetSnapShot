@@ -4,6 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use App\Location;
+use App\Group;
+use App\Type;
+
 use Illuminate\Http\Request;
 
 class Provider extends Model
@@ -30,6 +34,11 @@ class Provider extends Model
     public function locations()
     {
         return $this->hasMany('App\Location');
+    }
+
+    public function types()
+    {
+        return $this->hasMany('App\type');
     }
 
     public function addUser(Request $request)
